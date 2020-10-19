@@ -23,8 +23,18 @@ const App = (props) => {
     setPersonsState({
       persons: [
         { name: newName, age: 27 },
-        { name: 'Manu', age: 24 },
+        { name: 'Manulo', age: 24 },
         { name: 'Stephano', age: 23 },
+      ],
+    });
+  };
+
+  const nameChangedHandler = (event) => {
+    setPersonsState({
+      persons: [
+        { name: 'Max', age: 27 },
+        { name: event.target.value, age: 24 },
+        { name: 'Stephano', age: 27 },
       ],
     });
   };
@@ -48,6 +58,7 @@ const App = (props) => {
         age={personsState.persons[1].age}
         //bind syntax better if possible (performance hit)
         click={switchNameHandler.bind(this, 'GarryL!')}
+        changed={nameChangedHandler}
       >
         My hobbies: racing
       </Person>
