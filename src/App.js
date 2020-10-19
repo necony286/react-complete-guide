@@ -15,14 +15,14 @@ const App = (props) => {
     otherState: 'some other value',
   });
 
-  console.log(personsState, otherState);
+  // console.log(personsState, otherState);
 
-  const switchNameHandler = () => {
+  const switchNameHandler = (newName) => {
     //console.log('was clicked');
     // DONT DO THIS (BAD - WONT WORK) this.state.persons[0].name = 'Necon';
     setPersonsState({
       persons: [
-        { name: 'Maximus', age: 27 },
+        { name: newName, age: 27 },
         { name: 'Manu', age: 24 },
         { name: 'Stephano', age: 23 },
       ],
@@ -33,7 +33,12 @@ const App = (props) => {
     <div className="App">
       <h1>Hi, I'm a React app!</h1>
       <p>This is really working!</p>
-      <button onClick={switchNameHandler}>Switch Name</button>
+      <button
+        //bind syntax better if possible (performance hit)
+        onClick={() => switchNameHandler('Maxxiimuss!')}
+      >
+        Switch Name
+      </button>
       <Person
         name={personsState.persons[0].name}
         age={personsState.persons[0].age}
@@ -41,6 +46,8 @@ const App = (props) => {
       <Person
         name={personsState.persons[1].name}
         age={personsState.persons[1].age}
+        //bind syntax better if possible (performance hit)
+        click={switchNameHandler.bind(this, 'GarryL!')}
       >
         My hobbies: racing
       </Person>
