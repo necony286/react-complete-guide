@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import UserInput from './UserInput/UserInput';
+import UserOutput from './UserOutput/UserOutput';
 
 const App = (props) => {
   const [personsState, setPersonsState] = useState({
@@ -11,11 +13,21 @@ const App = (props) => {
     ],
   });
 
+  const [usernameState, setUsernameState] = useState({
+    username: 'necony286',
+  });
+
   const [otherState, setOtherState] = useState({
     otherState: 'some other value',
   });
 
   // console.log(personsState, otherState);
+
+  const inputChangeHandler = (userevent) => {
+    setUsernameState({
+      username: userevent.target.value,
+    });
+  };
 
   const switchNameHandler = (newName) => {
     //console.log('was clicked');
@@ -49,6 +61,11 @@ const App = (props) => {
 
   return (
     <div className="App">
+      <UserInput
+        changedInput={inputChangeHandler}
+        username={usernameState.username}
+      />
+      <UserOutput username={usernameState.username} />
       <h1>Hi, I'm a React app!</h1>
       <p>This is really working!</p>
       <button
